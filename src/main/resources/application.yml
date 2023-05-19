@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+    
+      routes:
+        - id: greet-api
+          uri: lb://GREET-API
+          predicates:
+          - Path=/greet
+        - id: welcome-api
+          uri: lb://WELCOME-API
+          predicates:
+          - Path=/welcome
+    application:
+      name: CLOUD-API-GATEWAY
+server:
+  port: 2000
